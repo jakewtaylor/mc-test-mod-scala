@@ -9,18 +9,10 @@ import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 class BaseBlock(material: Material, name: String) extends Block(material) {
-  setRegistryName(name)
+  setRegistryName(name);
   setUnlocalizedName(name)
 
-  register()
-
-  def register(): Unit = {
-    // Get the item
-    val item = new ItemBlock(this).setRegistryName(getRegistryName())
-
-    // Register it
-    register(item);
-  }
+  register(createItem)
 
   def register(item: Item): Unit = {
     // Register the instance as a block
@@ -29,6 +21,8 @@ class BaseBlock(material: Material, name: String) extends Block(material) {
     // Register the instance as an item too
     GameRegistry.findRegistry(classOf[Item]).register(item);
   }
+
+  def createItem: Item = new ItemBlock(this).setRegistryName(getRegistryName());
 
   def initModel(): Unit = {
     ModelLoader.setCustomModelResourceLocation(

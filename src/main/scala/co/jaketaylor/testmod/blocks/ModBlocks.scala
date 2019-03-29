@@ -4,15 +4,16 @@ import co.jaketaylor.testmod.TestMod
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 class ModBlocks {
-  @GameRegistry.ObjectHolder(TestMod.NAME + ":steel_block")
-  var steelBlock: BlockSteel = null;
+  var steelBlock: BlockSteel = new BlockSteel();
+
+  var crusherBlock: BlockCrusher = new BlockCrusher();
 
   def init(): Unit = {
-    steelBlock = new BlockSteel();
+    //
   }
 
-  def initModels(): Unit =
-  {
+  def initModels(): Unit = {
     steelBlock.initModel();
+    crusherBlock.initModel();
   }
 }
